@@ -1,4 +1,3 @@
-import './App.css'
 import { Routes, Route } from 'react-router'
 import { HomeScreen } from './screens/home.screen'
 import { CharacterScreen } from './screens/character.screen'

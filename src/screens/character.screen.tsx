@@ -1,6 +1,8 @@
 import { useParams } from "react-router";
-
+import { Screen } from "@/screens/screen";
 export const CharacterScreen = () => {
   const { id } = useParams();
-  return <div>Character {id}</div>;
+  return <Screen>
+    <div>Character {id}</div>
+  </Screen>;
 };
