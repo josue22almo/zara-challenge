@@ -1,6 +1,5 @@
 import { Character } from "@/contexts/character/domain/character";
 import { Card, CardContent, CardFooter } from "./card";
-import { Separator } from "@/components/ui/separator";
 import { HeartIcon } from "./heart.icon";
 import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
 import { Button } from "./button";
@@ -11,15 +10,18 @@ interface CharacterCardProps {
 
 export const CharacterCard = ({ character }: CharacterCardProps) => {
   const { isFavorite, toggleFavorite } = useFavoritesContext();
-  
+
   return (
-    <Card className="w-full min-w-[172.5px] shadow-none border-none">
-      <CardContent className="p-0">
-        <img src={character.image} alt={character.name} className="w-full h-auto" />
-        <Separator color="red" className="w-full bg-[#EC1D24] h-[5.38px]" />
+    <Card className="relative group overflow-hidden rounded-lg w-[172.5px] shadow-none border-none">
+      <CardContent className="aspect-square overflow-hidden p-0 border-b-[4px] border-[#ED1C24]">
+        <img 
+          src={character.image} 
+          alt={character.name}
+          className="w-full h-full"
+        />
       </CardContent>
-      <CardFooter className="bg-black relative flex justify-between p-[16px_16px_24px_16px]">
-        <h2 className="inline-block text-white">{character.name}</h2>
+      <CardFooter className="bg-black text-white p-2 flex justify-between items-center">
+        <span className="font-bold truncate">{character.name}</span>
         <Button onClick={() => toggleFavorite(character)}>
           <HeartIcon isFavorited={isFavorite(character)} />
         </Button>
@@ -28,5 +30,5 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
         </div>
       </CardFooter>
     </Card>
-  );
+  )
 };

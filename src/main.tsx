@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { FavoritesProvider } from "./contexts/character/hooks/FavoritesProvider.tsx";
+import { FavoritesProvider } from "./contexts/character/hooks/favorites.provider.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {

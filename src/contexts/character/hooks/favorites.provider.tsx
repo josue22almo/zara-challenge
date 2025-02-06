@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useFavorites } from "./useFavorites";
-import { FavoritesContext } from "./FavoritesContext";
+import { FavoritesContext } from "./favorites.context";
 
 
 export const FavoritesProvider = ({ children }: { children: ReactNode; }) => {

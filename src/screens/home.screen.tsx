@@ -3,10 +3,10 @@ import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
 
 
 import { Screen } from "@/screens/screen";
-import { CharacterCard } from "@/components/ui/character.card";
 import { useCharacters, useCharactersCount } from "@/contexts/character/hooks/useCharacters";
-import { useMarvelCharacterApi } from "@/contexts/character/insfractructure/marvel-character.api";
+import { useMarvelCharacterApi } from "@/contexts/character/infrastructure/marvel-character.api";
 import { Input } from "@/components/ui/input";
+import { CharacterList } from "@/components/ui/character.list";
 
 export const HomeScreen = () => {
   const [search, setSearch] = useState(""); 
@@ -22,8 +22,10 @@ export const HomeScreen = () => {
 
 
   useEffect(() => {
-    ref.current?.start();
-  }, [search]);
+    if (isLoading) {
+      ref.current?.start();
+    }
+  }, [search, isLoading]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -52,12 +54,7 @@ export const HomeScreen = () => {
           {
             !characters?.length && !isLoading && <div>No characters found</div>
           }
-          {
-            characters?.map((character) => (
-              <div key={character.id} className="site">
-                <CharacterCard character={character} />
-              </div>
-            ))}
+          { characters && <CharacterList characters={characters} /> }
         </div>
       </div>
       {
