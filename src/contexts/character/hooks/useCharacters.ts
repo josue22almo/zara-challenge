@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { CharacterApi } from "../domain/character.api";
 import { Character } from "../domain/character";
-import { useFavorites } from "./useFavorites";
+import { useFavoritesContext } from "./useFavoritesContext";
 
 const useCharactersQuery = <T>(api: CharacterApi, select: (data: Character[]) => T, search: string) => useQuery({
     queryKey: ['characters', search],
@@ -10,7 +10,8 @@ const useCharactersQuery = <T>(api: CharacterApi, select: (data: Character[]) =>
 });
 
 export const useCharacter = (api: CharacterApi, id: number) => {
-  const { isFavorite } = useFavorites();  
+  const { isFavorite } = useFavoritesContext();
+
   return useQuery({
     queryKey: ['character', id],
     queryFn: () => api.getCharacterById(id),

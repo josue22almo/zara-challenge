@@ -48,14 +48,17 @@ export const HomeScreen = () => {
             {charactersCount} RESULTS
           </div>
         </div>
-        {
-          characters?.map((character) => (
-            <CharacterCard key={character.id} character={character} />
-          ))
-        }
-        {
-          !characters?.length && !isLoading && <div>No characters found</div>
-        }
+        <div className="flex flex-wrap gap-4">
+          {
+            !characters?.length && !isLoading && <div>No characters found</div>
+          }
+          {
+            characters?.map((character) => (
+              <div key={character.id} className="site">
+                <CharacterCard character={character} />
+              </div>
+            ))}
+        </div>
       </div>
       {
         error && <div>Error: {error.message}</div>

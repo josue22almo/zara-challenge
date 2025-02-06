@@ -1,11 +1,11 @@
-import { useFavorites } from '@/contexts/character/hooks/useFavorites';
-import heartIcon from '../../assets/heart-icon.svg'
+import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
+import { HeartIcon } from './heart.icon';
 
 export const FavoritesIcon = () => {
-  const { total: totalFavorites } = useFavorites();
+  const { total: totalFavorites } = useFavoritesContext();
   return (
     <div className="flex flex-row items-center justify-center gap-2">
-      <img src={heartIcon} alt="Favorites Icon" style={{ width: '24px', height: '24px' }} />
+      <HeartIcon isFavorited />
       <span className="text-sm text-white">{totalFavorites}</span>
     </div>
   );

@@ -23,3 +23,11 @@ export const useFavorites = () => {
     total: favorites.length,
   };
 };
+
+export interface FavoritesContextType {
+  favorites: number[];
+  toggleFavorite: (character: Character) => void;
+  isFavorite: (character: Character) => boolean;
+  total: number;
+}
+
