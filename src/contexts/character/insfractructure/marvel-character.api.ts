@@ -1,12 +1,15 @@
 import CryptoJS from "crypto-js";
-import assert from "assert";
 
 import { Character } from "../domain/character";
 import { CharacterAppearance } from "../domain/character-apperance";
 import { CharacterApi } from "../domain/character.api";
 const getHash = (apiKey: string, privateKey: string) => {
-  assert(!!apiKey, "marvel apiKey is required");
-  assert(!!privateKey, "marvel privateKey is required");
+  if (!apiKey) {
+    throw new Error("marvel apiKey is required");
+  }
+  if (!privateKey) {
+    throw new Error("marvel privateKey is required");
+  }
   const ts = Date.now();
   const hash = CryptoJS.MD5(`${ts}${privateKey}${apiKey}`);
   return { ts, hash };

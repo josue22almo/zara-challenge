@@ -11,8 +11,13 @@ describe('MarvelCharacterApi', () => {
     );
   });
 
-  it('should fetch characters from marvel api', async () => {
+  it('should fetch characters from marvel api using search', async () => {
     const characters = await api.getCharacters('spider');
+    expect(characters).toBeDefined();
+  });
+
+  it('should fetch characters from marvel api with empty search', async () => {
+    const characters = await api.getCharacters('');
     expect(characters).toBeDefined();
   });
 
