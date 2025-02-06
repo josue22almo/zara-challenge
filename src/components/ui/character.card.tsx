@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter } from "./card";
 import { HeartIcon } from "./heart.icon";
 import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
 import { Button } from "./button";
+import { cn } from "@/lib/utils";
 
 interface CharacterCardProps {
   character: Character;
@@ -31,16 +32,26 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
           <span className="font-bold truncate">{character.name}</span>
           <Button 
             onClick={() => toggleFavorite(character)} 
-            className="p-1 transition-colors duration-300 group-hover:z-100 shadow-none"
+            className="p-1 transition-colors duration-300 group-hover:z-100 shadow-none w-12 h-12"
           >
             <HeartIcon 
               color={isFavorite(character) ? '#ED1C24' : '#fff'}
-              className={isFavorite(character) ? 'group-hover:fill-white' : 'fill-none'}
+              className={
+                cn(
+                  isFavorite(character) ? 'group-hover:fill-white' : 'fill-none',
+                  "transition-colors duration-300"
+                )
+              }
             />
           </Button>
           {/* Triángulo decorativo */}
-          <div className="absolute right-0 bottom-0 w-[20px] h-[20px] overflow-hidden group-hover:hidden">
-            <div className="absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-black border-b-[20px]  border-b-white transition-colors duration-300"/>
+          <div className="absolute right-0 bottom-0 w-[20px] h-[20px] overflow-hidden group-hover:overflow-visible">
+            <div className={
+              cn(
+                "absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-black border-b-[20px]  border-b-white transition-colors duration-300",
+                "group-hover:border-l-[#ED1C24] group-hover:border-b-white group-hover:absolute group-hover:left-[8px] group-hover:bottom-[-8px]"
+              )
+            }/>
           </div>
         </div>
       </CardFooter>
