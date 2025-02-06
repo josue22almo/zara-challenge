@@ -26,24 +26,21 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
                    transition-colors duration-300"
       >
         <HoverTab />
-        <div className="flex flex-row justify-between items-center w-full">
+
+        <div className="group-hover:relative group-hover:z-10 flex flex-row justify-between items-center w-full">
           <span className="font-bold truncate">{character.name}</span>
           <Button 
             onClick={() => toggleFavorite(character)} 
-            className="p-1 transition-colors duration-300"
+            className="p-1 transition-colors duration-300 group-hover:z-100 shadow-none"
           >
             <HeartIcon 
-              isFavorited={isFavorite(character)} 
-              className={`w-5 h-5 transition-colors duration-300 ${
-                isFavorite(character) 
-                  ? "text-[#ED1C24]"
-                  : "text-white group-hover:text-black"
-              }`}
+              color={isFavorite(character) ? '#ED1C24' : '#fff'}
+              className={isFavorite(character) ? 'group-hover:fill-white' : 'fill-none'}
             />
           </Button>
           {/* Triángulo decorativo */}
-          <div className="absolute right-0 bottom-0 w-[20px] h-[20px] overflow-hidden">
-            <div className="absolute bottom-0 right-0 w-0 h-0 border-l-[20px] group-hover:border-l-[#ED1C24] border-l-black border-b-[20px] group-hover:border-b-white border-b-white transition-colors duration-300"></div>
+          <div className="absolute right-0 bottom-0 w-[20px] h-[20px] overflow-hidden group-hover:hidden">
+            <div className="absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-black border-b-[20px]  border-b-white transition-colors duration-300"/>
           </div>
         </div>
       </CardFooter>
@@ -55,7 +52,7 @@ export const HoverTab: React.FC = () => {
   return (
     <div 
         className="absolute top-0 left-0 w-full bg-[#ED1C24] 
-                   h-[5px] group-hover:h-[40px] transition-all duration-300 ease-in-out"
-      />
+                   h-[5px] group-hover:h-[40px] transition-all duration-300 ease-in-out group-hover:-z-0"
+    />
   );
 };
