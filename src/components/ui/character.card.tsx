@@ -13,7 +13,7 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
   const { isFavorite, toggleFavorite } = useFavoritesContext();
 
   return (
-    <Card className="relative group overflow-hidden rounded-lg w-[172.5px] shadow-none border-none">
+    <Card className="relative group overflow-hidden rounded-lg w-[172.5px] h-[245.97px] shadow-none border-none">
       <CardContent className="aspect-square overflow-hidden p-0">
         <img 
           src={character.image} 
@@ -29,7 +29,7 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
         <HoverTab />
 
         <div className="group-hover:relative group-hover:z-10 flex flex-row justify-between items-center w-full">
-          <span className="font-bold truncate">{character.name}</span>
+          <span className="truncate">{character.name}</span>
           <Button 
             onClick={() => toggleFavorite(character)} 
             className="p-1 transition-colors duration-300 group-hover:z-100 shadow-none w-12 h-12"

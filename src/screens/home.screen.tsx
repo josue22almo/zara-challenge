@@ -41,8 +41,8 @@ export const HomeScreen = () => {
         height={4}
         style={{ position: 'absolute', top: 68, left: 0, right: 0, zIndex: 50 }}
       />
-      <div className="flex flex-col gap-4 pt-12">
-        <div className="flex flex-col gap-4"> 
+      <div className="flex flex-col">
+        <div className="flex flex-col"> 
           <Input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
         <div className="flex flex-col gap-4"> 
@@ -50,12 +50,12 @@ export const HomeScreen = () => {
             {charactersCount} RESULTS
           </div>
         </div>
-        <div className="flex flex-wrap gap-4">
+        <>
           {
             !characters?.length && !isLoading && <div>No characters found</div>
           }
           { characters && <CharacterList characters={characters} /> }
-        </div>
+        </>
       </div>
       {
         error && <div>Error: {error.message}</div>
