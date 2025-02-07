@@ -7,6 +7,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { FavoritesProvider } from "./contexts/character/hooks/favorites.provider.tsx";
+import { CharacterApiProvider } from "./character-api.provider.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,11 +20,13 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-    <FavoritesProvider>
-      <App />
-    </FavoritesProvider>
-    </BrowserRouter>
+    <CharacterApiProvider>
+      <BrowserRouter>
+        <FavoritesProvider>
+          <App />
+        </FavoritesProvider>
+      </BrowserRouter>
+      </CharacterApiProvider>
     <ReactQueryDevtools initialIsOpen={true} />
   </QueryClientProvider>,
 )

@@ -6,16 +6,16 @@ import { Screen } from "@/screens/screen";
 import { useCharacters, useCharactersCount } from "@/contexts/character/hooks/useCharacters";
 import { Input } from "@/components/ui/input";
 import { CharacterList } from "@/components/ui/character.list";
-import { getCharacterApi } from "@/container";
+import { useCharacterApiContext } from "@/use-character.api.context";
 
 export const HomeScreen = () => {
   const [search, setSearch] = useState(""); 
   const ref = useRef<LoadingBarRef>(null);
   
-  const api = getCharacterApi();
+  const { api, mode } = useCharacterApiContext();
 
-  const { data: characters, isLoading, error } = useCharacters(api, search);
-  const { data: charactersCount } = useCharactersCount(api, search);
+  const { data: characters, isLoading, error, refetch: refreshCharacters } = useCharacters(mode, api, search);
+  const { data: charactersCount } = useCharactersCount(mode, api, search);
 
 
   useEffect(() => {
@@ -29,6 +29,11 @@ export const HomeScreen = () => {
       ref.current?.complete();
     }
   }, [isLoading]);
+
+  useEffect(() => {
+    setSearch("");
+    refreshCharacters();
+  }, [mode]);
   
   return (
     <Screen>

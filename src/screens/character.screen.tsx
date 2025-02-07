@@ -1,16 +1,16 @@
 import { useParams } from "react-router";
 import { Screen } from "@/screens/screen";
 import { useCharacter, useCharacterAppearances } from "@/contexts/character/hooks/useCharacters";
-import { getCharacterApi } from "@/container";
 import { CharacterFavoriteButton } from "@/components/ui/character-favorite.button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Character } from "@/contexts/character/domain/character";
 import { CutIcon } from "@/components/ui/cut.icon";
+import { useCharacterApiContext } from "@/use-character.api.context";
 export const CharacterScreen = () => {
   const { id } = useParams();
 
-  const api = getCharacterApi();
-  const { data: character } = useCharacter(api, Number(id));
+  const { api, mode } = useCharacterApiContext();
+  const { data: character } = useCharacter(mode, api, Number(id));
 
   return (
     <Screen className="border-t-[5px] border-[#333333]">
@@ -87,8 +87,8 @@ function CharacterTitle({ character }: { character: Character | undefined }) {
 const ComicList = () => {
   const { id } = useParams();
 
-  const api = getCharacterApi();
-  const { data: appearances } = useCharacterAppearances(api, Number(id));
+  const { api, mode } = useCharacterApiContext();
+  const { data: appearances } = useCharacterAppearances(mode, api, Number(id));
 
   return (
     <div 
