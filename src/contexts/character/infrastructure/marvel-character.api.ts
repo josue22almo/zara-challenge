@@ -25,7 +25,7 @@ const mapCharacter = (character: MarvelCharacter): Character => ({
 const mapComic = (comic: MarvelComic): CharacterAppearance => ({
   id: comic.id,
   name: comic.title,
-  description: new Date(comic.dates[0].date).toLocaleDateString(),
+  description: new Date(comic.dates[0].date).getFullYear().toString(),
   image: comic.thumbnail.path + "." + comic.thumbnail.extension,
 });
 
@@ -34,9 +34,9 @@ export const createMarvelCharacterApi = (apiKey: string, privateKey: string): Ch
     const { ts, hash } = getHash(apiKey, privateKey);
     let response;
     if (!search) {
-      response = await fetch(`https://gateway.marvel.com/v1/public/characters?apikey=${apiKey}&ts=${ts}&hash=${hash}`);
+      response = await fetch(`https://gateway.marvel.com/v1/public/characters?apikey=${apiKey}&ts=${ts}&hash=${hash}&limit=50`);
     } else {
-      response = await fetch(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${search}&apikey=${apiKey}&ts=${ts}&hash=${hash}`);
+      response = await fetch(`https://gateway.marvel.com/v1/public/characters?nameStartsWith=${search}&apikey=${apiKey}&ts=${ts}&hash=${hash}&limit=50`);
     }
     const data: MarvelResponse<MarvelCharacter> = await response.json();
     return data.data.results.map(mapCharacter);

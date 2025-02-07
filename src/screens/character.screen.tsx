@@ -2,8 +2,6 @@ import { useParams } from "react-router";
 import { Screen } from "@/screens/screen";
 import { useCharacter, useCharacterAppearances } from "@/contexts/character/hooks/useCharacters";
 import { getCharacterApi } from "@/container";
-import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { CharacterFavoriteButton } from "@/components/ui/character-favorite.button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Character } from "@/contexts/character/domain/character";
@@ -86,57 +84,48 @@ function CharacterTitle({ character }: { character: Character | undefined }) {
 }
 
 
+const ComicList = () => {
+  const { id } = useParams();
+
+  const api = getCharacterApi();
+  const { data: appearances } = useCharacterAppearances(api, Number(id));
+
+  return (
+    <div 
+        className="flex overflow-x-scroll scrollbar-thin scrollbar-thumb-[#ED1C24] scrollbar-track-transparent space-x-4"
+      >
+        {
+          !appearances && <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+        }
+        {
+          appearances && appearances.length === 0 && 
+          <p>No appearances found</p>
+        }
+        {appearances && appearances.map((comic) => (
+          <div 
+            key={comic.id} 
+            className="flex-shrink-0 w-48 rounded-lg bg-white"
+          >
+            <img 
+              src={comic.image} 
+              alt={comic.name} 
+              className="w-full h-64 object-cover rounded-t-lg"
+            />
+            <div className="p-2">
+              <h3 className="font-bold text-sm truncate">{comic.name}</h3>
+              <p className="text-gray-500 text-xs">{comic.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+  );
+};
+
 function CharacterAppearances() {
   return (
     <div className="w-full p-6 px-4 sm:px-6 md:px-8 lg:px-12">
       <h2 className="text-2xl font-bold mb-4">Comics</h2>
-      <AppearancesCarousel />
+      <ComicList />
     </div>
   )
-}
-
-function AppearancesCarousel() {
-  const { id } = useParams();
-
-  const api = getCharacterApi();
-
-  const { data: appearances } = useCharacterAppearances(api, Number(id));
-
-  return (
-    <>
-      {
-        appearances && appearances.length === 0 &&  <p className="text-lg">No appearances found</p>
-      }
-      {
-        appearances && appearances.length > 0 && (
-          <Carousel className="w-full max-w-sm">
-            <CarouselContent className="-ml-1">
-              {
-                !appearances && <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              }
-              {
-                appearances && appearances.map((appearance, index) => (
-                  <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1">
-                      <Card>
-                        <CardContent className="flex aspect-[1/2] items-center justify-center p-6">
-                            <img
-                              src={appearance.image}
-                              alt={appearance.name}
-                              className="w-full h-auto"
-                            />
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
-                ))
-              }
-            </CarouselContent>
-          </Carousel>
-        )
-      }
-    </>
-  )
-
-  
 }
