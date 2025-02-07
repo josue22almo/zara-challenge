@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Character } from "../domain/character";
 
-export const useFavorites = () => {
+export const useFavorites = (): FavoritesContextType => {
   const [favorites, setFavorites] = useState<number[]>([]);
-  const [showFavorites, setShowFavorites] = useState(false);
+  const [mustShowFavorites, setMustShowFavorites] = useState(false);
 
   const toggleFavorite = (character: Character) => {
       if (favorites.includes(character.id)) {
@@ -17,8 +17,12 @@ export const useFavorites = () => {
     return favorites.includes(character.id);
   };
 
-  const toggleShowFavorites = () => {
-    setShowFavorites(!showFavorites);
+  const showFavorites = () => {
+    setMustShowFavorites(true);
+  };
+
+  const hideFavorites = () => {
+    setMustShowFavorites(false);
   };
 
   return {
@@ -26,8 +30,9 @@ export const useFavorites = () => {
     toggleFavorite,
     isFavorite,
     total: favorites.length,
+    mustShowFavorites,
     showFavorites,
-    toggleShowFavorites,
+    hideFavorites,
   };
 };
 
@@ -36,7 +41,8 @@ export interface FavoritesContextType {
   toggleFavorite: (character: Character) => void;
   isFavorite: (character: Character) => boolean;
   total: number;
-  showFavorites: boolean;
-  toggleShowFavorites: () => void;
+  mustShowFavorites: boolean;
+  showFavorites: () => void;
+  hideFavorites: () => void;
 }
 

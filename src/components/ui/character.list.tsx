@@ -5,9 +5,9 @@ import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesCont
 
 
 export const CharacterList = ({ characters }: { characters: Character[]; }) => {
-  const { isFavorite, showFavorites } = useFavoritesContext();
+  const { isFavorite, mustShowFavorites } = useFavoritesContext();
 
-  const filteredCharacters = showFavorites ? characters.filter(character => isFavorite(character)) : characters;
+  const filteredCharacters = mustShowFavorites ? characters.filter(character => isFavorite(character)) : characters;
 
   return (
     <div className={
