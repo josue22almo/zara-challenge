@@ -45,11 +45,11 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
             />
           </Button>
           {/* Triángulo decorativo */}
-          <div className="absolute right-0 bottom-0 w-[20px] h-[20px] overflow-hidden group-hover:overflow-visible">
+          <div className="absolute right-0 bottom-0 w-[20px] h-[20px] overflow-hidden group-hover:overflow-visible border-none">
             <div className={
               cn(
                 "absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-black border-b-[20px]  border-b-white transition-colors duration-300",
-                "group-hover:border-l-[#ED1C24] group-hover:border-b-white group-hover:absolute group-hover:left-[8px] group-hover:bottom-[-8px]"
+                "group-hover:border-l-[#ED1C24] group-hover:border-b-white group-hover:absolute group-hover:left-[8px] group-hover:bottom-[-8px]",
               )
             }/>
           </div>
