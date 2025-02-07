@@ -25,11 +25,11 @@ const mapCharacter = (character: MarvelCharacter): Character => ({
 const mapComic = (comic: MarvelComic): CharacterAppearance => ({
   id: comic.id,
   name: comic.title,
-  description: comic.description,
+  description: new Date(comic.dates[0].date).toLocaleDateString(),
   image: comic.thumbnail.path + "." + comic.thumbnail.extension,
 });
 
-export const useMarvelCharacterApi = (apiKey: string, privateKey: string): CharacterApi => ({
+export const createMarvelCharacterApi = (apiKey: string, privateKey: string): CharacterApi => ({
   getCharacters: async (search: string) => {
     const { ts, hash } = getHash(apiKey, privateKey);
     let response;

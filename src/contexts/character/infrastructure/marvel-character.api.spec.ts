@@ -1,11 +1,11 @@
 import { CharacterApi } from "../domain/character.api";
-import { useMarvelCharacterApi } from "./marvel-character.api";
+import { createMarvelCharacterApi } from "./marvel-character.api";
 
 describe('MarvelCharacterApi', () => {
   let api: CharacterApi;
 
   beforeAll(() => {
-    api = useMarvelCharacterApi(
+    api = createMarvelCharacterApi(
       process.env.MARVEL_API_KEY!,
       process.env.MARVEL_PRIVATE_KEY!
     );
