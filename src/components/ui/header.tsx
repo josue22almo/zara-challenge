@@ -29,10 +29,10 @@ export const Header = () => {
             <NavLink to="/">
               <FavoritesIcon />
             </NavLink>
-            <div className="flex items-center space-x-2 bg-red-500">
-              <Switch id="airplane-mode" className="" checked={mode === 'dragon-ball'} onCheckedChange={handleToggleMode} />
-              <Label htmlFor="airplane-mode" className="text-white">
-                {mode === 'dragon-ball' ? 'Dragon Ball' : 'Marvel'}
+            <div className="flex items-center space-x-2">
+              <Switch className="border-white" checked={mode === 'marvel'} onCheckedChange={handleToggleMode} />
+              <Label htmlFor="airplane-mode" className="text-white min-w-[80px]">
+                {mode === 'marvel' ? 'Marvel' : 'Dragon Ball'}
               </Label>
             </div>
           </div>

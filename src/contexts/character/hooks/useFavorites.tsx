@@ -1,20 +1,30 @@
 import { useState } from "react";
 import { Character } from "../domain/character";
+import { useCharacterApiContext } from "@/use-character.api.context";
 
 export const useFavorites = (): FavoritesContextType => {
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const { mode } = useCharacterApiContext();
+  const [favorites, setFavorites] = useState<{ [key: string]: number[] }>({});
   const [mustShowFavorites, setMustShowFavorites] = useState(false);
 
   const toggleFavorite = (character: Character) => {
-      if (favorites.includes(character.id)) {
-          setFavorites(favorites.filter((id) => id !== character.id));
+      const currentFavorites = favorites[mode] || [];
+      if (currentFavorites.includes(character.id)) {
+          setFavorites({
+              ...favorites,
+              [mode]: currentFavorites.filter((id) => id !== character.id)
+          });
       } else {
-          setFavorites([...favorites, character.id]);
+          setFavorites({
+              ...favorites,
+              [mode]: [...currentFavorites, character.id]
+          });
       }
   };
 
   const isFavorite = (character: Character) => {
-    return favorites.includes(character.id);
+    const currentFavorites = favorites[mode] || [];
+    return currentFavorites.includes(character.id);
   };
 
   const showFavorites = () => {
@@ -26,10 +36,10 @@ export const useFavorites = (): FavoritesContextType => {
   };
 
   return {
-    favorites,
+    favorites: favorites[mode] || [],
     toggleFavorite,
     isFavorite,
-    total: favorites.length,
+    total: favorites[mode]?.length || 0,
     mustShowFavorites,
     showFavorites,
     hideFavorites,
