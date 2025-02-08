@@ -27,7 +27,7 @@ export const HomeScreen = () => {
   
   return (
     <Screen isLoading={isLoading}>
-      <div className="flex flex-col py-12 space-y-6 px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="flex flex-col py-6 gap-6 px-4 sm:px-6 md:px-8 lg:px-12">
         <SearchWrapper onSearch={setSearch} charactersCount={charactersCount}  search={search}/>
         <>
           {
