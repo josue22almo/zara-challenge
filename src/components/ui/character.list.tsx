@@ -1,14 +1,8 @@
 import { Character } from "@/contexts/character/domain/character";
 import { CharacterCard } from "./character.card";
 import { cn } from "@/lib/utils";
-import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
-
 
 export const CharacterList = ({ characters }: { characters: Character[]; }) => {
-  const { isFavorite, mustShowFavorites } = useFavoritesContext();
-
-  const filteredCharacters = mustShowFavorites ? characters.filter(character => isFavorite(character)) : characters;
-
   return (
     <div className={
       cn(
@@ -20,7 +14,7 @@ export const CharacterList = ({ characters }: { characters: Character[]; }) => {
         "2xl:grid-cols-10 2xl:gap-[30px]",
       )
     }>
-      {filteredCharacters.map((character) => (
+      {characters.map((character) => (
         <CharacterCard key={character.id} character={character} />
       ))}
     </div>

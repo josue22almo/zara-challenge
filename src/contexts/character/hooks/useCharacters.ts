@@ -29,8 +29,24 @@ export const useCharacterAppearances = (mode: string, api: CharacterApi, id: num
   });
 };
 
-export const useCharactersCount = (mode: string, api: CharacterApi, search: string) => 
-  useCharactersQuery(mode, api, (data) => data.length, search);
+export const useCharactersCount = (mode: string, api: CharacterApi, search: string) => {
+  const query = useCharacters(mode, api, search);
 
-export const useCharacters = (mode: string, api: CharacterApi, search: string) => 
-  useCharactersQuery(mode, api, (data) => data, search);
+  return {
+    ...query,
+    data: query.data?.length,
+  }
+}
+
+export const useCharacters = (mode: string, api: CharacterApi, search: string) => {
+  const query = useCharactersQuery(mode, api, (data) => data, search);
+
+  const { isFavorite, mustShowFavorites } = useFavoritesContext();
+
+  const filteredCharacters = mustShowFavorites ? query.data?.filter(character => isFavorite(character)) : query.data;
+
+  return {
+    ...query,
+    data: filteredCharacters,
+  }
+}
