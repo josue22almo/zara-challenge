@@ -19,15 +19,14 @@ export const Header = () => {
   }
 
   return (
-    <>
-      <nav className={
-        cn(
-          "w-full h-auto bg-black px-12 py-2 px-4 shadow-md",
-          'sm:px-14',
-          'md:px-16',
-          'lg:px-24',
-        )
-      }>
+    <div className={
+      cn(
+        "fixed top-0 left-0 right-0 z-50",
+        "w-full h-[84px] bg-black px-12 py-2 px-4 shadow-md",
+        'xl:py-4'
+      )
+    }>
+      <nav>
         <div className="flex items-center justify-between">
           <NavLink to="/" onClick={hideFavorites}>
             <AppIcon className="w-[130px] h-[52px]" />
@@ -45,6 +44,6 @@ export const Header = () => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };

@@ -20,7 +20,12 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
   return (
     <Card 
       onClick={handleClick}
-      className="relative group overflow-hidden rounded-lg w-[172.5px] h-[245.97px] shadow-none border-none">
+      className={
+        cn(
+          "relative group overflow-hidden rounded-lg w-[172.5px] h-[245.97px] shadow-none border-none",
+          "xl:w-[188.57px]"
+        )
+      }>
       <CardContent className="aspect-square overflow-hidden p-0">
         <img 
           src={character.image} 

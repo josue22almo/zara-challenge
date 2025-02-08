@@ -57,7 +57,10 @@ export const LoadingBar = forwardRef<LoadingBarRef, LoadingBarProps>(({ isLoadin
   if (!active) return null;
 
   return (
-    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', zIndex: 50 }} className={className}>
+    <div         
+      id="loading-bar"
+      style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', zIndex: 50 }} className={className}
+    >
       <div 
         style={{ width: `${progress}%`, height: '100%', backgroundColor: `${color || '#007bff'}`, transition: 'width 0.2s ease-in-out' }} 
         className={

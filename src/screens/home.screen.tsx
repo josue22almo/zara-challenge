@@ -6,6 +6,7 @@ import { useCharacters, useCharactersCount } from "@/contexts/character/hooks/us
 import { Input } from "@/components/ui/input";
 import { CharacterList } from "@/components/ui/character.list";
 import { useCharacterApiContext } from "@/use-character.api.context";
+import { cn } from "@/lib/utils";
 
 export const HomeScreen = () => {
   const [search, setSearch] = useState(""); 
@@ -27,7 +28,16 @@ export const HomeScreen = () => {
   
   return (
     <Screen isLoading={isLoading}>
-      <div className="flex flex-col py-6 gap-6 px-4 sm:px-6 md:px-8 lg:px-12">
+      {/* main content */}
+      <div 
+        id="main-content"
+        className={
+          cn(
+            "flex flex-col py-6 gap-6 px-4",
+            "xl:px-12 xl:p-12 xl:gap-6",
+          )
+        }
+      >
         <SearchWrapper onSearch={setSearch} charactersCount={charactersCount}  search={search}/>
         <>
           {
@@ -53,7 +63,11 @@ interface SearchWrapperProps {
 
 const SearchWrapper = ({ onSearch, charactersCount, search }: SearchWrapperProps) => {
   return (
-    <div className="flex flex-col gap-3"> 
+    <div id="search-wrapper" className={
+      cn(
+        "flex flex-col gap-3",
+      )
+    }> 
       <div className="relative">
         <Input 
           type="text"

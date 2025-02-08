@@ -1,5 +1,6 @@
 import { Header } from "@/components/ui/header";
 import { LoadingBarRef, LoadingBar } from "@/components/ui/loading.bar";
+import { cn } from "@/lib/utils";
 import { useCharacterApiContext } from "@/use-character.api.context";
 import { useRef, useEffect } from "react";
 
@@ -22,17 +23,21 @@ export const Screen = ({ children, className, isLoading }: ScreenProps) => {
   }, [isLoading]);
 
 
-  return <div className={`flex flex-col h-screen ${className}`}>
-    <div className="fixed top-0 left-0 right-0 z-50">
-      <Header />
-    </div>
+  return <div id="screen" className={
+    cn(
+      "flex flex-col h-screen pb-6",
+      "xl:pb-none",
+      className
+    )
+  }>
+    <Header />
     <LoadingBar 
         isLoading={isLoading}
         ref={loadingBarRef}
-        className="absolute top-[68px] left-0 right-0 z-[50]"
+        className="absolute top-[84px] left-0 right-0 z-[50]"
         color={mode === 'marvel' ? "red" : 'yellow'}
       />
-    <div className="flex-1 mt-16">
+    <div className="flex-1 mt-[84px]" id="screen-content">
       {children}
     </div>
   </div>;
