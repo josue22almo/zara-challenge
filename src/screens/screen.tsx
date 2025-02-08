@@ -27,6 +27,7 @@ export const Screen = ({ children, className, isLoading }: ScreenProps) => {
     cn(
       "flex flex-col h-screen pb-6",
       "xl:pb-none",
+      "lg:pb-none",
       className
     )
   }>

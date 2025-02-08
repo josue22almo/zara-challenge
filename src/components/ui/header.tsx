@@ -23,7 +23,8 @@ export const Header = () => {
       cn(
         "fixed top-0 left-0 right-0 z-50",
         "w-full h-[84px] bg-black px-12 py-2 px-4 shadow-md",
-        'xl:py-4'
+        'lg:py-4',
+        'xl:py-4',
       )
     }>
       <nav>

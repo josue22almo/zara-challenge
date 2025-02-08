@@ -14,7 +14,13 @@ export const CharacterScreen = () => {
   const { data: character, isLoading, error } = useCharacter(mode, api, Number(id));
 
   return (
-    <Screen isLoading={isLoading} className="xl:border-t-[1px] border-[#333333]">
+    <Screen isLoading={isLoading} className={
+      cn(
+        "border-[#333333]",
+        "lg:border-t-[1px] ",
+        "xl:border-t-[1px] ",
+      )
+    }>
       <CharacterResume character={character} error={error} />
       <Appearances  />
     </Screen>
@@ -26,6 +32,7 @@ function CharacterResume({ character, error }: { character: Character | undefine
     <div id="character-resume" className={
       cn(
         "bg-black relative",
+        "lg:px-12 lg:flex lg:justify-center",
         "xl:px-12 xl:flex xl:justify-center"
       )
     }>
@@ -40,6 +47,7 @@ function CharacterResumeContent({ character, error }: { character: Character | u
     <div id="character-resume-content" className={
       cn(
         "flex flex-col",
+        "lg:px-0 lg:flex-row lg:flex lg:w-[960px]",
         "xl:px-0 xl:flex-row xl:flex xl:w-[960px]"
       )
     }>
@@ -57,7 +65,11 @@ function CharacterPhoto({ character, error }: { character: Character | undefined
           <img
             src={character?.image}
             alt={character?.name}
-            className="w-[393px] h-[397px] xl:w-[320px] xl:h-[320px] xl:object-fit object-contain mx-auto my-auto"
+            className={
+              cn(
+                "w-[393px] h-[397px] object-contain mx-auto my-auto",
+              )
+            }
           />
         ) : !error ? (
           <Skeleton className="w-[393px] h-[397px]" />
@@ -100,7 +112,8 @@ function Appearances() {
     <div className={
       cn(
         "w-full gap-6",
-        "xl:px-12 xl:flex xl:justify-center"
+        "lg:px-12 lg:flex lg:justify-center",
+        "xl:px-12 xl:flex xl:justify-center",
       )
     }>
       <AppearancesContent />
@@ -114,7 +127,8 @@ const AppearancesContent = () => {
         className={
           cn(
             "flex flex-col py-12 gap-6 space-x-4",
-            "xl:px-0 xl:flex xl:w-[960px]"
+            "lg:px-0 lg:flex lg:w-[960px]",
+            "xl:px-0 xl:flex xl:w-[960px]",
           )
         }
     >
