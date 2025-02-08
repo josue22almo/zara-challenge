@@ -25,9 +25,9 @@ export const createDragonBallCharacterApi = (): CharacterApi => ({
       const data: DragonBallCharactersResponse = await response.json();
       return data.items.map(mapCharacter);
     }
-    const response = await fetch(`${API_URL}/characters?search=${search}&limit=50`);
-    const data: DragonBallCharactersResponse = await response.json();
-    return data.items.map(mapCharacter);
+    const response = await fetch(`${API_URL}/characters?name=${search}&limit=50`);
+    const data: DragonBallCharacter[] = await response.json();
+    return data.map(mapCharacter);
   },
   getCharacterById: async (id: number) => {
     const response = await fetch(`${API_URL}/characters/${id}`);
