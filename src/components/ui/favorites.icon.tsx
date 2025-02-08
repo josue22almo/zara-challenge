@@ -1,4 +1,4 @@
-import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
+import { useFavoritesContext } from "@/contexts/character/hooks/characters/useFavoritesContext";
 import { HeartIcon } from './heart.icon';
 
 export const FavoritesIcon = () => {

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { CharacterApiContext } from './character-api.context';
+import { CharacterApiContext } from '../domain/character-api.context';
 import { useCharacterApi } from './use-character.api';
 
 

@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 
-
 import { Screen } from "@/screens/screen";
-import { useCharacters, useCharactersCount } from "@/contexts/character/hooks/useCharacters";
 import { Input } from "@/components/ui/input";
 import { CharacterList } from "@/components/ui/character.list";
-import { useCharacterApiContext } from "@/use-character.api.context";
 import { cn } from "@/lib/utils";
+import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
+import { useCharacters, useCharactersCount } from "@/contexts/character/hooks/characters/useCharacters";
 
 export const HomeScreen = () => {
   const [search, setSearch] = useState(""); 

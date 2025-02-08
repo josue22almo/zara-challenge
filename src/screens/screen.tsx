@@ -1,7 +1,8 @@
 import { Header } from "@/components/ui/header";
 import { LoadingBarRef, LoadingBar } from "@/components/ui/loading.bar";
+import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
 import { cn } from "@/lib/utils";
-import { useCharacterApiContext } from "@/use-character.api.context";
+
 import { useRef, useEffect } from "react";
 
 interface ScreenProps {

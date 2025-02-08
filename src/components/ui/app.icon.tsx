@@ -1,7 +1,7 @@
-import { useCharacterApiContext } from '@/use-character.api.context';
 import marvelLogo from '/marvel-logo.svg'
 import dragonBallLogo from '/dragon-ball-logo.svg'
 import { cn } from '@/lib/utils';
+import { useCharacterApiContext } from '@/contexts/character/domain/use-character.api.context';
 
 interface AppIconProps {
   className?: string;

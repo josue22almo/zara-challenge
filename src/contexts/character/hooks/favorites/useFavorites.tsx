@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Character } from "../domain/character";
-import { useCharacterApiContext } from "@/use-character.api.context";
+import { Character } from "@/contexts/character/domain/character";
+import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
 
 export const useFavorites = (): FavoritesContextType => {
   const { mode } = useCharacterApiContext();

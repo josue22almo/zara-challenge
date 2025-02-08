@@ -2,10 +2,10 @@ import { NavLink, useNavigate } from "react-router";
 
 import { FavoritesIcon } from "./favorites.icon";
 import { AppIcon } from "./app.icon";
-import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
+import { useFavoritesContext } from "@/contexts/character/hooks/characters/useFavoritesContext";
 import { Switch } from "@/components/ui/switch";
-import { useCharacterApiContext } from "@/use-character.api.context";
 import { cn } from "@/lib/utils";
+import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
 
 export const Header = () => {
   const { hideFavorites } = useFavoritesContext();

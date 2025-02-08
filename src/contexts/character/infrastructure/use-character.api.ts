@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { CharacterApi } from './contexts/character/domain/character.api';
-
-
-import { createMarvelCharacterApi } from "./contexts/character/infrastructure/marvel-character.api";
-import { createDragonBallCharacterApi } from "./contexts/character/infrastructure/dragon-ball-character.api";
+import { createDragonBallCharacterApi } from './dragon-ball-character.api';
+import { createMarvelCharacterApi } from './marvel-character.api';
+import { CharacterApiContextType } from '../domain/character-api.context';
 
 export const marvelCharacterApi = createMarvelCharacterApi(
   import.meta.env.VITE_MARVEL_API_KEY!,
@@ -11,7 +9,6 @@ export const marvelCharacterApi = createMarvelCharacterApi(
 );
 
 export const dragonBallCharacterApi = createDragonBallCharacterApi();
-
 
 export const useCharacterApi = (): CharacterApiContextType => {
   const [mode, setMode] = useState<'marvel' | 'dragon-ball'>(() => {
@@ -33,10 +30,3 @@ export const useCharacterApi = (): CharacterApiContextType => {
     toggleMode,
   };
 };
-
-
-export interface CharacterApiContextType {
-  api: CharacterApi;
-  mode: 'marvel' | 'dragon-ball';
-  toggleMode: () => void;
-}

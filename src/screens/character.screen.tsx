@@ -1,12 +1,12 @@
 import { useParams } from "react-router";
 import { Screen } from "@/screens/screen";
-import { useCharacter, useCharacterAppearances } from "@/contexts/character/hooks/useCharacters";
 import { CharacterFavoriteButton } from "@/components/ui/character-favorite.button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Character } from "@/contexts/character/domain/character";
 import { CutIcon } from "@/components/ui/cut.icon";
-import { useCharacterApiContext } from "@/use-character.api.context";
 import { cn } from "@/lib/utils";
+import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
+import { useCharacter, useCharacterAppearances } from "@/contexts/character/hooks/characters/useCharacters";
 export const CharacterScreen = () => {
   const { id } = useParams();
 
