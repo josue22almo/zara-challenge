@@ -54,7 +54,7 @@ export const createMarvelCharacterApi = (apiKey: string, privateKey: string): Ch
     const { ts, hash } = getHash(apiKey, privateKey);
     const response = await fetch(`https://gateway.marvel.com/v1/public/characters/${id}/comics?apikey=${apiKey}&ts=${ts}&hash=${hash}&orderBy=focDate&limit=20`);
     const data: MarvelResponse<MarvelComic> = await response.json();
-    return data.data.results.map(mapComic);
+    return data.data.results.map(mapComic).sort((a, b) => new Date(a.description).getTime() - new Date(b.description).getTime());
   },
 });
 
