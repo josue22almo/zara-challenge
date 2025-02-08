@@ -1,3 +1,5 @@
+import { expect, describe, it, beforeAll } from 'vitest'
+
 import { CharacterApi } from "../domain/character.api";
 import { createDragonBallCharacterApi } from "./dragon-ball-character.api";
 
