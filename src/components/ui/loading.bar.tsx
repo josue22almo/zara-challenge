@@ -1,19 +1,19 @@
 import { cn } from '@/lib/utils';
-import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
 
-interface HorizontalLoadingBarProps {
+interface LoadingBarProps {
   isLoading: boolean;
   color?: string;
   className?: string;
 }
 
-export interface HorizontalLoadingBarRef {
+export interface LoadingBarRef {
   start: () => void;
   stop: () => void;
   complete: () => void;
 }
 
-export const HorizontalLoadingBar = forwardRef<HorizontalLoadingBarRef, HorizontalLoadingBarProps>(({ isLoading, color, className }, ref) => {
+export const LoadingBar = forwardRef<LoadingBarRef, LoadingBarProps>(({ isLoading, color, className }, ref) => {
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState(isLoading);
 

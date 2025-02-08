@@ -10,35 +10,35 @@ export const CharacterScreen = () => {
   const { id } = useParams();
 
   const { api, mode } = useCharacterApiContext();
-  const { data: character } = useCharacter(mode, api, Number(id));
+  const { data: character, isLoading, error } = useCharacter(mode, api, Number(id));
 
   return (
-    <Screen className="border-t-[5px] border-[#333333]">
-      <CharacterResume character={character} />
+    <Screen isLoading={isLoading} className="border-t-[5px] border-[#333333]">
+      <CharacterResume character={character} error={error} />
       <CharacterAppearances  />
     </Screen>
   );
 };
 
-function CharacterResume({ character }: { character: Character | undefined }) {
+function CharacterResume({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
     <div className="bg-black px-12 relative">
-      <CharacterResumeContent character={character} />
+      <CharacterResumeContent character={character} error={error} />
       <CutIcon className="absolute w-6 h-6 bottom-0 right-0" />
     </div>
   )
 }
 
-function CharacterResumeContent({ character }: { character: Character | undefined }) {
+function CharacterResumeContent({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
     <div className="flex flex-row items-center">
-      <CharacterPhoto character={character} />
-      <CharacterInfo character={character} />
+      <CharacterPhoto character={character} error={error}  />
+      <CharacterInfo character={character} error={error} />
     </div>
   )
 }
 
-function CharacterPhoto({ character }: { character: Character | undefined }) {
+function CharacterPhoto({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
     <>
       {
@@ -48,26 +48,28 @@ function CharacterPhoto({ character }: { character: Character | undefined }) {
             alt={character?.name}
             className="lg:w-[320px] lg:h-[320px] md:w-[278px] md:h-[278px]"
           />
-        ) : (
+        ) : !error ? (
           <Skeleton className="h-[320px] w-[320px]" />
+        ) : (
+          <div className="text-white h-[320px] w-[320px] flex items-center justify-center">Character not found</div>
         )
       }
     </>
   )
 }
 
-export const CharacterInfo = ({ character }: { character: Character | undefined }) => {
+export const CharacterInfo = ({ character, error }: { character: Character | undefined, error: Error | null }) => {
   return (
     <div className="flex flex-col ml-6 text-white">
       <div className="flex flex-row items-center">
-        <CharacterTitle character={character} />
+        <CharacterTitle character={character} error={error} />
       </div>
       <p className="mt-2 text-lg">{character?.description}</p>
     </div>
   )
 }
 
-function CharacterTitle({ character }: { character: Character | undefined }) {
+function CharacterTitle({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
     <>
       { character && 
@@ -78,7 +80,7 @@ function CharacterTitle({ character }: { character: Character | undefined }) {
           </div>  
         </>
       }
-      {!character && <Skeleton className="h-2 w-56" />}
+      {!character && !error && <Skeleton className="h-2 w-56" />}
     </>
   )
 }

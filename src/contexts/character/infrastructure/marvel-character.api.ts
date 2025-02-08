@@ -44,6 +44,9 @@ export const createMarvelCharacterApi = (apiKey: string, privateKey: string): Ch
   getCharacterById: async (id: number) => {
     const { ts, hash } = getHash(apiKey, privateKey);
     const response = await fetch(`https://gateway.marvel.com/v1/public/characters/${id}?apikey=${apiKey}&ts=${ts}&hash=${hash}`);
+    if (response.status === 404) {
+      throw new Error("Character not found");
+    }
     const data: MarvelResponse<MarvelCharacter> = await response.json();
     return mapCharacter(data.data.results[0]);
   },
