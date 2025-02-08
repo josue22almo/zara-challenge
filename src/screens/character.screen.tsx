@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Character } from "@/contexts/character/domain/character";
 import { CutIcon } from "@/components/ui/cut.icon";
 import { useCharacterApiContext } from "@/use-character.api.context";
+import { cn } from "@/lib/utils";
 export const CharacterScreen = () => {
   const { id } = useParams();
 
@@ -13,7 +14,7 @@ export const CharacterScreen = () => {
   const { data: character, isLoading, error } = useCharacter(mode, api, Number(id));
 
   return (
-    <Screen isLoading={isLoading} className="border-t-[5px] border-[#333333]">
+    <Screen isLoading={isLoading} className="xl:border-t-[1px] border-[#333333]">
       <CharacterResume character={character} error={error} />
       <Appearances  />
     </Screen>
@@ -22,7 +23,12 @@ export const CharacterScreen = () => {
 
 function CharacterResume({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
-    <div className="bg-black relative">
+    <div id="character-resume" className={
+      cn(
+        "bg-black relative",
+        "xl:px-12 xl:flex xl:justify-center"
+      )
+    }>
       <CharacterResumeContent character={character} error={error} />
       <CutIcon className="absolute w-6 h-6 bottom-0 right-0" />
     </div>
@@ -31,7 +37,12 @@ function CharacterResume({ character, error }: { character: Character | undefine
 
 function CharacterResumeContent({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
-    <div className="flex flex-col">
+    <div id="character-resume-content" className={
+      cn(
+        "flex flex-col",
+        "xl:px-0 xl:flex-row xl:flex xl:w-[960px]"
+      )
+    }>
       <CharacterPhoto character={character} error={error}  />
       <CharacterInfo character={character} error={error} />
     </div>
@@ -40,27 +51,27 @@ function CharacterResumeContent({ character, error }: { character: Character | u
 
 function CharacterPhoto({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
-    <>
+    <div id="character-photo" className="flex items-center justify-center">
       {
         character ? (
           <img
             src={character?.image}
             alt={character?.name}
-            className="w-[393px] h-[397px] lg:w-[320px] lg:h-[320px] md:w-[278px] md:h-[278px]"
+            className="w-[393px] h-[397px] xl:w-[320px] xl:h-[320px] xl:object-fit object-contain mx-auto my-auto"
           />
         ) : !error ? (
-          <Skeleton className="h-[320px] w-[320px]" />
+          <Skeleton className="w-[393px] h-[397px]" />
         ) : (
-          <div className="text-white h-[320px] w-[320px] flex items-center justify-center">Character not found</div>
+          <div className="text-white w-[393px] h-[397px] flex items-center justify-center">Character not found</div>
         )
       }
-    </>
+    </div>
   )
 }
 
 export const CharacterInfo = ({ character, error }: { character: Character | undefined, error: Error | null }) => {
   return (
-    <div className="flex flex-col text-white self-start w-full p-[24px_16px_48px_16px] gap-[24px]">
+    <div id="character-info" className="flex flex-col text-white self-center w-full p-[24px_16px_48px_16px] gap-[24px]">
       <CharacterTitle character={character} error={error} />
       <p className="mt-2 text-lg">{character?.description}</p>
     </div>
@@ -69,7 +80,7 @@ export const CharacterInfo = ({ character, error }: { character: Character | und
 
 function CharacterTitle({ character, error }: { character: Character | undefined, error: Error | null }) {
   return (
-    <>
+    <div id="character-title">
       { character && 
         <div className="flex flex-row items-center justify-between">
           <h1 className="text-4xl font-bold">{character?.name}</h1>
@@ -79,14 +90,19 @@ function CharacterTitle({ character, error }: { character: Character | undefined
         </div>
       }
       {!character && !error && <Skeleton className="h-2 w-56" />}
-    </>
+    </div>
   )
 }
 
 
 function Appearances() {
   return (
-    <div className="w-full gap-6">
+    <div className={
+      cn(
+        "w-full gap-6",
+        "xl:px-12 xl:flex xl:justify-center"
+      )
+    }>
       <AppearancesContent />
     </div>
   )
@@ -95,7 +111,12 @@ function Appearances() {
 const AppearancesContent = () => {
   return (
     <div 
-        className="flex flex-col py-12 gap-6 space-x-4"
+        className={
+          cn(
+            "flex flex-col py-12 gap-6 space-x-4",
+            "xl:px-0 xl:flex xl:w-[960px]"
+          )
+        }
     >
       <AppearancesTitle />
       <AppearancesList />
@@ -133,7 +154,7 @@ function AppearancesList() {
           <img 
             src={comic.image} 
             alt={comic.name} 
-            className="w-full h-64 object-cover rounded-t-lg"
+            className="w-full h-64 object-fit rounded-t-lg"
           />
           <div className="p-2">
             <h3 className="font-bold text-sm truncate">{comic.name}</h3>

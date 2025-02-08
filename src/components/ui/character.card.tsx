@@ -13,7 +13,6 @@ interface CharacterCardProps {
 export const CharacterCard = ({ character }: CharacterCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    // use react router to navigate to the character details page
     navigate(`/character/${character.id}`);
   }
 
@@ -30,7 +29,7 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
         <img 
           src={character.image} 
           alt={character.name}
-          className="w-full h-full"
+          className="w-full h-full object-contain"
         />
       </CardContent>
 

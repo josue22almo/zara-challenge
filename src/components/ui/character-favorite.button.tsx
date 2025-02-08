@@ -22,17 +22,17 @@ export const CharacterFavoriteButton: React.FC<CharacterFavoriteButtonProps> = (
         e.stopPropagation();
         toggleFavorite(character);
       }} 
-      className={cn("p-1 transition-colors duration-300 group-hover:z-100 shadow-none w-12 h-12", className)}
+      className={cn(
+        "p-1 transition-colors duration-300 group-hover:z-100 shadow-none w-12 h-12", className)}
     >
       <HeartIcon 
         className={
           cn(
             isFavorite(character) ? 'fill-[#ED1C24] group-hover:fill-white stroke-none' : 'stroke-white stroke-2',
             "transition-colors duration-300",
+            "w-3 h-3"
           )
         }
-        width={2}
-        height={2}
       />
     </Button>
   );
