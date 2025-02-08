@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { CharacterApi } from "@/contexts/character/domain/character.api";
 import { Character } from "@/contexts/character/domain/character";
-import { useFavoritesContext } from "./useFavoritesContext";
+import { useFavoritesContext } from "../favorites/useFavoritesContext";
 
 const useCharactersQuery = <T>(mode: string, api: CharacterApi, select: (data: Character[]) => T, search: string) => useQuery({
     queryKey: ['characters', search, mode],

@@ -1,5 +1,5 @@
 import { Character } from "@/contexts/character/domain/character";
-import { useFavoritesContext } from "@/contexts/character/hooks/characters/useFavoritesContext";
+import { useFavoritesContext } from "@/contexts/character/hooks/favorites/useFavoritesContext";
 import { cn } from "@/lib/utils";
 import { HeartIcon } from "./heart.icon";
 import { Button } from "./button";
