@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
 
 
 import { Screen } from "@/screens/screen";
@@ -7,10 +6,11 @@ import { useCharacters, useCharactersCount } from "@/contexts/character/hooks/us
 import { Input } from "@/components/ui/input";
 import { CharacterList } from "@/components/ui/character.list";
 import { useCharacterApiContext } from "@/use-character.api.context";
+import { HorizontalLoadingBar, HorizontalLoadingBarRef } from "@/components/ui/loading.bar";
 
 export const HomeScreen = () => {
   const [search, setSearch] = useState(""); 
-  const ref = useRef<LoadingBarRef>(null);
+  const loadingBarRef = useRef<HorizontalLoadingBarRef>(null);
   
   const { api, mode } = useCharacterApiContext();
 
@@ -20,13 +20,13 @@ export const HomeScreen = () => {
 
   useEffect(() => {
     if (isLoading) {
-      ref.current?.start();
+      loadingBarRef.current?.start();
     }
   }, [search, isLoading]);
 
   useEffect(() => {
     if (!isLoading) {
-      ref.current?.complete();
+      loadingBarRef.current?.complete();
     }
   }, [isLoading]);
 
@@ -37,11 +37,17 @@ export const HomeScreen = () => {
   
   return (
     <Screen>
-      <LoadingBar 
-        ref={ref}
+      {/* <LoadingBar 
+        ref={loadingBarRef}
         shadow={false}
         height={4}
         style={{ position: 'absolute', top: 68, left: 0, right: 0, zIndex: 50 }}
+      /> */}
+      <HorizontalLoadingBar 
+        isLoading={isLoading}
+        ref={loadingBarRef}
+        className="absolute top-[68px] left-0 right-0 z-[50]"
+        color={mode === 'marvel' ? "red" : 'yellow'}
       />
       <div className="flex flex-col py-12 space-y-6 px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="flex flex-col"> 

@@ -8,7 +8,7 @@ export const FavoritesIcon = () => {
       className="flex flex-row items-center justify-center gap-2"
       onClick={showFavorites}
     >
-      <HeartIcon color="#ED1C24" className="w-5 h-5" />
+      <HeartIcon className="fill-[#ED1C24]"/>
       <span className="text-sm text-white">{totalFavorites}</span>
     </button>
   );

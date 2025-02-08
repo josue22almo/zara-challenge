@@ -1,7 +1,7 @@
 import { Character } from "@/contexts/character/domain/character";
 import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
 import { cn } from "@/lib/utils";
-import { HeartIcon } from "lucide-react";
+import { HeartIcon } from "./heart.icon";
 import { Button } from "./button";
 
 interface CharacterFavoriteButtonProps {
@@ -25,14 +25,14 @@ export const CharacterFavoriteButton: React.FC<CharacterFavoriteButtonProps> = (
       className={cn("p-1 transition-colors duration-300 group-hover:z-100 shadow-none w-12 h-12", className)}
     >
       <HeartIcon 
-        color={isFavorite(character) ? '#ED1C24' : '#fff'}
-        fill={isFavorite(character) ? '#ED1C24' : 'fill-none'}
         className={
           cn(
-            isFavorite(character) ? 'group-hover:fill-white' : 'fill-none',
-            "transition-colors duration-300"
+            isFavorite(character) ? 'fill-[#ED1C24] group-hover:fill-white stroke-none' : 'stroke-white stroke-2',
+            "transition-colors duration-300",
           )
         }
+        width={2}
+        height={2}
       />
     </Button>
   );

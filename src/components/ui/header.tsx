@@ -4,7 +4,6 @@ import { FavoritesIcon } from "./favorites.icon";
 import { AppIcon } from "./app.icon";
 import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "./label";
 import { useCharacterApiContext } from "@/use-character.api.context";
 
 export const Header = () => {
@@ -31,9 +30,9 @@ export const Header = () => {
             </NavLink>
             <div className="flex items-center space-x-2">
               <Switch className="border-white" checked={mode === 'marvel'} onCheckedChange={handleToggleMode} />
-              <Label htmlFor="airplane-mode" className="text-white min-w-[80px]">
+              <span className="text-white min-w-[80px]">
                 {mode === 'marvel' ? 'Marvel' : 'Dragon Ball'}
-              </Label>
+              </span>
             </div>
           </div>
         </div>
