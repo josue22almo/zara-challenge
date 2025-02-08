@@ -28,14 +28,7 @@ export const HomeScreen = () => {
   return (
     <Screen isLoading={isLoading}>
       <div className="flex flex-col py-12 space-y-6 px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="flex flex-col"> 
-          <Input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-        </div>
-        <div className="flex flex-col gap-4"> 
-          <div className="text-sm text-black">
-            {charactersCount} RESULTS
-          </div>
-        </div>
+        <SearchWrapper onSearch={setSearch} charactersCount={charactersCount}  search={search}/>
         <>
           {
             !characters?.length && !isLoading && <div>No characters found</div>
@@ -49,3 +42,33 @@ export const HomeScreen = () => {
     </Screen>
   );
 };
+
+
+
+interface SearchWrapperProps {
+  onSearch: (search: string) => void;
+  charactersCount: number | undefined;
+  search: string;
+}
+
+const SearchWrapper = ({ onSearch, charactersCount, search }: SearchWrapperProps) => {
+  return (
+    <div className="flex flex-col gap-3"> 
+      <div className="relative">
+        <Input 
+          type="text"
+          value={search}
+          onChange={(e) => onSearch(e.target.value)}
+          placeholder="Search for a character"
+          className="uppercase placeholder:text-gray-500 pl-10 shadow-none border-b-[1px] border-black"
+        />
+        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-[12px]">🔍</span>
+      </div>
+      <div className="flex flex-col gap-4"> 
+        <div className="text-sm text-black uppercase">
+          {charactersCount} results
+        </div>
+      </div>
+    </div>
+  );
+}
