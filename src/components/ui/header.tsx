@@ -5,32 +5,40 @@ import { AppIcon } from "./app.icon";
 import { useFavoritesContext } from "@/contexts/character/hooks/useFavoritesContext";
 import { Switch } from "@/components/ui/switch";
 import { useCharacterApiContext } from "@/use-character.api.context";
+import { cn } from "@/lib/utils";
 
 export const Header = () => {
   const { hideFavorites } = useFavoritesContext();
   const { mode, toggleMode } = useCharacterApiContext();
   const navigate = useNavigate();
 
-
   const handleToggleMode = () => {
     navigate("/");
     toggleMode();
+    hideFavorites();
   }
 
   return (
     <>
-      <nav className="w-full h-auto bg-black lg:px-24 md:px-16 sm:px-14 px-12 py-2 shadow-md">
+      <nav className={
+        cn(
+          "w-full h-auto bg-black px-12 py-2 px-4 shadow-md",
+          'sm:px-14',
+          'md:px-16',
+          'lg:px-24',
+        )
+      }>
         <div className="flex items-center justify-between">
           <NavLink to="/" onClick={hideFavorites}>
-            <AppIcon />
+            <AppIcon className="w-[130px] h-[52px]" />
           </NavLink>
-          <div className="flex items-center space-x-2">
+          <div id="header-actions" className="flex items-center justify-end space-x-2">
             <NavLink to="/">
               <FavoritesIcon />
             </NavLink>
             <div className="flex items-center space-x-2">
               <Switch className="border-white" checked={mode === 'marvel'} onCheckedChange={handleToggleMode} />
-              <span className="text-white min-w-[80px]">
+              <span className="text-white lg:min-w-[80px]">
                 {mode === 'marvel' ? 'Marvel' : 'Dragon Ball'}
               </span>
             </div>
