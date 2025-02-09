@@ -37,7 +37,7 @@ export const Screen = ({ children, className, isLoading }: ScreenProps) => {
         isLoading={isLoading}
         ref={loadingBarRef}
         className="absolute top-[84px] left-0 right-0 z-[50]"
-        color={mode === 'marvel' ? "red" : 'yellow'}
+        color={mode === 'marvel' ? "var(--primary)" : 'var(--secondary)'}
       />
     <div className="flex-1 mt-[84px]" id="screen-content">
       {children}

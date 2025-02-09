@@ -3,6 +3,7 @@ import { useFavoritesContext } from "@/contexts/character/hooks/favorites/useFav
 import { cn } from "@/lib/utils";
 import { HeartIcon } from "./heart.icon";
 import { Button } from "./button";
+import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
 
 interface CharacterFavoriteButtonProps {
   character: Character | undefined;
@@ -11,6 +12,7 @@ interface CharacterFavoriteButtonProps {
 
 export const CharacterFavoriteButton: React.FC<CharacterFavoriteButtonProps> = ({ character, className }) => {
   const { isFavorite, toggleFavorite } = useFavoritesContext();
+  const { mode } = useCharacterApiContext();
 
   if (!character) {
     return null;
@@ -29,7 +31,7 @@ export const CharacterFavoriteButton: React.FC<CharacterFavoriteButtonProps> = (
       <HeartIcon 
         className={
           cn(
-            isFavorite(character) ? 'fill-[#ED1C24] group-hover:fill-white stroke-none' : 'stroke-white stroke-2',
+            isFavorite(character) ? `fill-[${mode === 'marvel' ? 'var(--primary)' : 'var(--secondary)'}] group-hover:fill-white stroke-none` : 'stroke-white stroke-2',
             "transition-colors duration-300",
             "w-3 h-3"
           )

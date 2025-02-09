@@ -63,6 +63,7 @@ function CharacterResumeContent({ character, error }: { character: Character | u
 }
 
 function CharacterPhoto({ character, error }: { character: Character | undefined, error: Error | null }) {
+  const { mode } = useCharacterApiContext();
   return (
     <div id="character-photo" className="flex items-center justify-center">
       {
@@ -73,7 +74,8 @@ function CharacterPhoto({ character, error }: { character: Character | undefined
             data-testid="character-photo"
             className={
               cn(
-                "w-[393px] h-[397px] object-fill mx-auto my-auto",
+                "w-[393px] h-[397px] mx-auto my-auto",
+                mode === 'marvel' ? 'object-fill' : 'object-contain'
               )
             }
           />

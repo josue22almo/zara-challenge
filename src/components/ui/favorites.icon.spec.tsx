@@ -62,6 +62,6 @@ describe('FavoritesIcon', () => {
     renderWithProvider();
     
     const heartIcon = screen.getByTestId('heart-icon');
-    expect(heartIcon).toHaveClass('fill-[#ED1C24]', 'w-6', 'h-6');
+    expect(heartIcon).toHaveClass('fill-[var(--primary)]', 'w-6', 'h-6');
   });
 }); 

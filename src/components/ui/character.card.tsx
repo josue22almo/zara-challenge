@@ -44,8 +44,12 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
       </CardContent>
 
       <CardFooter 
-        className="relative bg-black group-hover:bg-[#ED1C24] text-white p-2 flex justify-between items-center 
-                   transition-colors duration-300"
+        className={
+          cn(
+            "relative bg-black  text-white p-2 flex justify-between items-center transition-colors duration-300",
+            mode === 'marvel' ? 'group-hover:bg-[var(--primary)]' : 'group-hover:bg-[var(--secondary)]'
+          )
+        }
       >
         <HoverTab />
 
@@ -57,7 +61,8 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
             <div className={
               cn(
                 "absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-black border-b-[20px]  border-b-white transition-colors duration-300",
-                "group-hover:border-l-[#ED1C24] group-hover:border-b-white group-hover:absolute group-hover:left-[8px] group-hover:bottom-[-8px]",
+                "group-hover:border-b-white group-hover:absolute group-hover:left-[8px] group-hover:bottom-[-8px]",
+                mode === 'marvel' ? 'group-hover:border-l-[var(--primary)]' : 'group-hover:border-l-[var(--secondary)]'
               )
             }/>
           </div>
