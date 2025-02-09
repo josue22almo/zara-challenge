@@ -7,6 +7,7 @@ import { CutIcon } from "@/components/ui/cut.icon";
 import { cn } from "@/lib/utils";
 import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
 import { useCharacter, useCharacterAppearances } from "@/contexts/character/hooks/characters/useCharacters";
+import { CharacterAppearance } from "@/contexts/character/domain/character-apperance";
 export const CharacterScreen = () => {
   const { id } = useParams();
 
@@ -66,6 +67,7 @@ function CharacterPhoto({ character, error }: { character: Character | undefined
           <img
             src={character?.image}
             alt={character?.name}
+            data-testid="character-photo"
             className={
               cn(
                 "w-[393px] h-[397px] object-contain mx-auto my-auto",
@@ -162,23 +164,30 @@ function AppearancesList() {
         appearances && appearances.length === 0 && 
         <p>No appearances found</p>
       }
-      {appearances && appearances.map((comic) => (
-        <div 
-          key={comic.id} 
-          className="flex-shrink-0 w-48 rounded-lg bg-white"
-        >
-          <img 
-            src={comic.image} 
-            alt={comic.name} 
-            className="w-full h-64 object-contain rounded-t-lg"
-          />
-          <div className="p-2">
-            <h3 className="font-bold text-sm truncate">{comic.name}</h3>
-            <p className="text-gray-500 text-xs">{comic.description}</p>
-          </div>
-        </div>
+      {appearances && appearances.map((appearance) => (
+        <AppearanceCard key={appearance.id} appearance={appearance} />
       ))}
     </div>
   );
+}
+
+const AppearanceCard = ({ appearance }: { appearance: CharacterAppearance }) => {
+  return (
+    <div 
+      key={appearance.id} 
+      className="flex-shrink-0 w-48 rounded-lg bg-white"
+      data-testid={`appearance-card-${appearance.id}`}
+    >
+      <img 
+        src={appearance.image} 
+        alt={appearance.name} 
+        className="w-full h-64 object-contain rounded-t-lg"
+      />
+      <div className="p-2">
+        <h3 className="font-bold text-sm truncate">{appearance.name}</h3>
+        <p className="text-gray-500 text-xs">{appearance.description}</p>
+      </div>
+    </div>
+  )
 }
 
