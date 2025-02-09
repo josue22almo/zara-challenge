@@ -9,6 +9,7 @@ export const CharacterList = ({ characters }: { characters: Character[]; }) => {
       className={
         cn(
           "grid gap-[10px] grid-cols-2",
+          "md:px-0 md:gap-4 md:grid-cols-5",
           "lg:px-0 lg:gap-4 lg:grid-cols-6",
           "xl:px-0 xl:gap-4 xl:grid-cols-7",
         "2xl:px-0 2xl:gap-4 2xl:grid-cols-9",

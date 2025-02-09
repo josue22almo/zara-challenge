@@ -18,6 +18,7 @@ export const CharacterScreen = () => {
     <Screen isLoading={isLoading} className={
       cn(
         "border-[#333333]",
+        "md:border-t-[1px] ",
         "lg:border-t-[1px] ",
         "xl:border-t-[1px] ",
       )
@@ -33,6 +34,7 @@ function CharacterResume({ character, error }: { character: Character | undefine
     <div id="character-resume" className={
       cn(
         "bg-black relative",
+        "md:px-12 md:flex md:justify-center",
         "lg:px-12 lg:flex lg:justify-center",
         "xl:px-12 xl:flex xl:justify-center"
       )
@@ -48,6 +50,7 @@ function CharacterResumeContent({ character, error }: { character: Character | u
     <div id="character-resume-content" className={
       cn(
         "flex flex-col",
+        "md:px-0 md:flex-row md:flex md:w-[960px]",
         "lg:px-0 lg:flex-row lg:flex lg:w-[960px]",
         "xl:px-0 xl:flex-row xl:flex xl:w-[960px]",
         "2xl:px-0 2xl:flex 2xl:w-[1000px]",
@@ -70,7 +73,7 @@ function CharacterPhoto({ character, error }: { character: Character | undefined
             data-testid="character-photo"
             className={
               cn(
-                "w-[393px] h-[397px] object-contain mx-auto my-auto",
+                "w-[393px] h-[397px] object-fill mx-auto my-auto",
               )
             }
           />
@@ -115,6 +118,7 @@ function Appearances() {
     <div className={
       cn(
         "w-full gap-6",
+        "md:px-12 md:flex md:justify-center",
         "lg:px-12 lg:flex lg:justify-center",
         "xl:px-12 xl:flex xl:justify-center",
       )
@@ -130,6 +134,7 @@ const AppearancesContent = () => {
         className={
           cn(
             "flex flex-col py-12 gap-6 space-x-4",
+            "md:px-0 md:flex md:w-[960px]",
             "lg:px-0 lg:flex lg:w-[960px]",
             "xl:px-0 xl:flex xl:w-[960px]",
             "2xl:px-0 2xl:flex 2xl:w-[1000px]",

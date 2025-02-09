@@ -25,7 +25,6 @@ export const LoadingBar = forwardRef<LoadingBarRef, LoadingBarProps>(({ isLoadin
       setActive(false);
     },
     complete() {
-      console.log('complete');
       setProgress(100);
       setTimeout(() => {
         setProgress(0);
