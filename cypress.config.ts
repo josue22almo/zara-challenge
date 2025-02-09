@@ -8,5 +8,10 @@ export default defineConfig({
     },
     baseUrl: 'http://localhost:5173',
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    defaultCommandTimeout: 10000,
+    retries: {
+      runMode: 2,
+      openMode: 0,
+    },
   },
 });

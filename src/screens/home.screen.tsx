@@ -57,11 +57,14 @@ interface SearchWrapperProps {
 
 const SearchWrapper = ({ onSearch, charactersCount, search }: SearchWrapperProps) => {
   return (
-    <div id="search-wrapper" className={
-      cn(
-        "flex flex-col gap-3",
-      )
-    }> 
+    <div id="search-wrapper" 
+      data-testid="search-wrapper"
+      className={
+        cn(
+          "flex flex-col gap-3",
+        )
+      }
+    > 
       <div className="relative">
         <Input 
           type="text"

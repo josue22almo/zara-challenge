@@ -5,6 +5,7 @@ export const FavoritesIcon = () => {
   const { total: totalFavorites, showFavorites } = useFavoritesContext();
   return (
     <button
+      data-testid="header-favorites-icon"
       className="flex flex-row items-center justify-center gap-2"
       onClick={showFavorites}
     >

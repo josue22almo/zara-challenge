@@ -91,7 +91,7 @@ export const CharacterInfo = ({ character, error }: { character: Character | und
   return (
     <div id="character-info" className="flex flex-col text-white self-center w-full p-[24px_16px_48px_16px] gap-[24px]">
       <CharacterTitle character={character} error={error} />
-      <p className="mt-2 text-lg">{character?.description}</p>
+      <p className="mt-2 text-lg" data-testid="character-description">{character?.description}</p>
     </div>
   )
 }
@@ -101,7 +101,7 @@ function CharacterTitle({ character, error }: { character: Character | undefined
     <div id="character-title">
       { character && 
         <div className="flex flex-row items-center justify-between">
-          <h1 className="text-4xl font-bold">{character?.name}</h1>
+          <h1 className="text-4xl font-bold" data-testid="character-name">{character?.name}</h1>
           <div className="ml-auto w-12 h-12">
             <CharacterFavoriteButton character={character} className="text-white" />
           </div>  
@@ -190,7 +190,7 @@ const AppearanceCard = ({ appearance }: { appearance: CharacterAppearance }) => 
       />
       <div className="p-2">
         <h3 className="font-bold text-sm truncate">{appearance.name}</h3>
-        <p className="text-gray-500 text-xs">{appearance.description}</p>
+        <p className="text-gray-500 text-xs" data-testid="appearance-description">{appearance.description}</p>
       </div>
     </div>
   )

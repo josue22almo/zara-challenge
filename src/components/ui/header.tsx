@@ -36,8 +36,13 @@ export const Header = () => {
             <NavLink to="/">
               <FavoritesIcon />
             </NavLink>
-            <div className="flex items-center space-x-2">
-              <Switch className="border-white" checked={mode === 'marvel'} onCheckedChange={handleToggleMode} />
+            <div className="flex items-center space-x-2" data-testid="header-mode-switch">
+              <Switch 
+                data-testid="header-mode-switch-button"
+                className="border-white"
+                checked={mode === 'marvel'}
+                onCheckedChange={handleToggleMode}
+              />
               <span className="text-white lg:min-w-[80px]">
                 {mode === 'marvel' ? 'Marvel' : 'Dragon Ball'}
               </span>
