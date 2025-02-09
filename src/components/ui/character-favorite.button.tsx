@@ -21,7 +21,8 @@ export const CharacterFavoriteButton: React.FC<CharacterFavoriteButtonProps> = (
       onClick={(e) => {
         e.stopPropagation();
         toggleFavorite(character);
-      }} 
+      }}
+      data-testid={`character-favorite-button-${character.id}`}
       className={cn(
         "p-1 transition-colors duration-300 group-hover:z-100 shadow-none w-12 h-12", className)}
     >

@@ -3,22 +3,10 @@ import { HomeScreen } from "./home.screen";
 import { QueryClient } from "@tanstack/react-query";
 import { ScreenTestWrapper } from "./screen.test-wrapper";
 import { Character } from "@/contexts/character/domain/character";
-import { CharacterApiContextType } from "@/contexts/character/domain/character-api.context";
+import { mockApiContext } from "@/contexts/character/domain/mockApiContext";
 
 describe("HomeScreen", () => {
-  const queryClient = new QueryClient();
-
-  const mockApiContext = (characters: Character[], mode: "marvel" | "dragon-ball"): CharacterApiContextType => ({
-    api: {
-      getCharacters: vi.fn().mockImplementation((search: string) => Promise.resolve(
-        search.length > 0 ? characters.filter(c => c.name.toLowerCase().includes(search.toLowerCase())) : characters
-      )),
-      getCharacterById: vi.fn().mockImplementation((id: number) => Promise.resolve(characters.find(c => c.id === id))),
-      getCharacterAppearances: vi.fn()
-    },
-    mode,
-    toggleMode: vi.fn(),
-  });
+  const queryClient = new QueryClient();  
 
   it("should render as many characters as the api returns", async() => {
     const characters = [

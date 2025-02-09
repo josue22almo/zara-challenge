@@ -11,6 +11,7 @@ export const HeartIcon = ({ className }: HeartIconProps) => {
       fill="none"
       className={cn(className, 'fill')}
       viewBox={`0 0 24 24`}
+      data-testid="heart-icon"
     >
       <path
         fillRule="evenodd"

@@ -12,7 +12,7 @@ export const AppIcon = ({ className }: AppIconProps) => {
   return (
     <img 
       src={mode === 'marvel' ? marvelLogo : dragonBallLogo}
-      alt="Marvel Logo"
+      alt={mode === 'marvel' ? 'Marvel Logo' : 'Dragon Ball Logo'}
       className={cn(className)}
     />
   );
