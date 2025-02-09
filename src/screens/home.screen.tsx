@@ -15,11 +15,6 @@ export const HomeScreen = () => {
   const { data: characters, isLoading, error, refetch: refreshCharacters } = useCharacters(mode, api, search);
   const { data: charactersCount } = useCharactersCount(mode, api, search);
 
-
-  useEffect(() => {
-  }, [search, isLoading]);
-
-
   useEffect(() => {
     setSearch("");
     refreshCharacters();

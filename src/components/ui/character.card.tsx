@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter } from "./card";
 import { cn } from "@/lib/utils";
 import { CharacterFavoriteButton } from "./character-favorite.button";
 import { HoverTab } from "./hover.tab";
+import { useCharacterApiContext } from "@/contexts/character/domain/use-character.api.context";
 
 interface CharacterCardProps {
   character: Character;
@@ -16,9 +17,12 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
     navigate(`/character/${character.id}`);
   }
 
+  const { mode } = useCharacterApiContext();
+
   return (
     <Card 
       onClick={handleClick}
+      data-testid={`character-card-${character.id}`}
       className={
         cn(
           "relative group overflow-hidden rounded-lg w-[172.5px] h-[245.97px] shadow-none border-none",
@@ -30,7 +34,12 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
         <img 
           src={character.image} 
           alt={character.name}
-          className="w-full h-full object-contain"
+          className={
+            cn(
+              "w-full h-full object-contain",
+              mode === "marvel" && "object-fill",
+            )
+          }
         />
       </CardContent>
 

@@ -48,7 +48,8 @@ function CharacterResumeContent({ character, error }: { character: Character | u
       cn(
         "flex flex-col",
         "lg:px-0 lg:flex-row lg:flex lg:w-[960px]",
-        "xl:px-0 xl:flex-row xl:flex xl:w-[960px]"
+        "xl:px-0 xl:flex-row xl:flex xl:w-[960px]",
+        "2xl:px-0 2xl:flex 2xl:w-[1000px]",
       )
     }>
       <CharacterPhoto character={character} error={error}  />
@@ -129,6 +130,7 @@ const AppearancesContent = () => {
             "flex flex-col py-12 gap-6 space-x-4",
             "lg:px-0 lg:flex lg:w-[960px]",
             "xl:px-0 xl:flex xl:w-[960px]",
+            "2xl:px-0 2xl:flex 2xl:w-[1000px]",
           )
         }
     >
@@ -168,7 +170,7 @@ function AppearancesList() {
           <img 
             src={comic.image} 
             alt={comic.name} 
-            className="w-full h-64 object-fit rounded-t-lg"
+            className="w-full h-64 object-contain rounded-t-lg"
           />
           <div className="p-2">
             <h3 className="font-bold text-sm truncate">{comic.name}</h3>
