@@ -29,7 +29,7 @@ export const Header = () => {
     }>
       <nav>
         <div className="flex items-center justify-between">
-          <NavLink to="/" onClick={hideFavorites}>
+          <NavLink to="/" onClick={hideFavorites} data-testid="app-icon-link">
             <AppIcon className="w-[130px] h-[52px]" />
           </NavLink>
           <div id="header-actions" className="flex items-center justify-end space-x-2">

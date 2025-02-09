@@ -11,6 +11,7 @@ export const AppIcon = ({ className }: AppIconProps) => {
   const { mode } = useCharacterApiContext();
   return (
     <img 
+      data-testid="app-icon"
       src={mode === 'marvel' ? marvelLogo : dragonBallLogo}
       alt={mode === 'marvel' ? 'Marvel Logo' : 'Dragon Ball Logo'}
       className={cn(className)}
