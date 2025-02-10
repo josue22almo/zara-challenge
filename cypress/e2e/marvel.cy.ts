@@ -79,7 +79,7 @@ describe('Marvel characters', () => {
   })
 
   describe('Character screen', () => {
-    it('See character details', () => {
+    it('See character details: name, description and image', () => {
       searchCharacter('Adam Warlock')
 
       visitCharacter(0)

@@ -6,7 +6,7 @@ export default defineConfig({
     setupNodeEvents(on) {
       on('file:preprocessor', vitePreprocessor())
     },
-    baseUrl: 'http://localhost:5173',
+    baseUrl: 'https://josue-zara-challenge.netlify.app',
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
     defaultCommandTimeout: 10000,
     retries: {
