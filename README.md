@@ -2,9 +2,15 @@
 
 ## Demo
 
-Please, check the video below to see the app in action.
+<div>
+    <a href="https://www.loom.com/share/0f28fef2ae9a4da39d4d955de0708592">
+      <p>Please, check the video below to see the app in action.</p>
+    </a>
+    <a href="https://www.loom.com/share/0f28fef2ae9a4da39d4d955de0708592">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/0f28fef2ae9a4da39d4d955de0708592-e50b28807f9057dd-full-play.gif">
+    </a>
+</div>
 
-https://www.loom.com/embed/0f28fef2ae9a4da39d4d955de0708592?sid=41f0a205-6d7f-4c28-8f47-e47b2de308d6
 
 ## Architecture
 
