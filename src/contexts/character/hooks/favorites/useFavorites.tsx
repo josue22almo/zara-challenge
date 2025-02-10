@@ -4,22 +4,32 @@ import { useCharacterApiContext } from "@/contexts/character/domain/use-characte
 
 export const useFavorites = (): FavoritesContextType => {
   const { mode } = useCharacterApiContext();
-  const [favorites, setFavorites] = useState<{ [key: string]: number[] }>({});
+  const [favorites, setFavorites] = useState<{ [key: string]: number[] }>(() => {
+    const storedFavorites = localStorage.getItem('favorites');
+    return storedFavorites ? JSON.parse(storedFavorites) : {};
+  });
   const [mustShowFavorites, setMustShowFavorites] = useState(false);
 
+  const updateLocalStorage = (updatedFavorites: { [key: string]: number[] }) => {
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
+
   const toggleFavorite = (character: Character) => {
-      const currentFavorites = favorites[mode] || [];
-      if (currentFavorites.includes(character.id)) {
-          setFavorites({
-              ...favorites,
-              [mode]: currentFavorites.filter((id) => id !== character.id)
-          });
-      } else {
-          setFavorites({
-              ...favorites,
-              [mode]: [...currentFavorites, character.id]
-          });
-      }
+    const currentFavorites = favorites[mode] || [];
+    let updatedFavorites;
+    if (currentFavorites.includes(character.id)) {
+      updatedFavorites = {
+        ...favorites,
+        [mode]: currentFavorites.filter((id) => id !== character.id)
+      };
+    } else {
+      updatedFavorites = {
+        ...favorites,
+        [mode]: [...currentFavorites, character.id]
+      };
+    }
+    setFavorites(updatedFavorites);
+    updateLocalStorage(updatedFavorites);
   };
 
   const isFavorite = (character: Character) => {

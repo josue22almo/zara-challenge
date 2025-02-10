@@ -50,6 +50,32 @@ describe('Marvel characters', () => {
 
       checkNumberOfVisibleCharacters(1)
     })
+
+    it('Keep favorites after reloading the page', () => {
+      toggleCharacterLike(0)
+      toggleCharacterLike(1)
+      toggleCharacterLike(2)
+
+      checkNumberOfFavorites(3)
+
+      cy.reload()
+
+      checkNumberOfFavorites(3)
+
+      visitCharacter(0)
+
+      toggleCharacterLike(0)
+
+      cy.reload()
+
+      checkNumberOfFavorites(2)
+
+      checkCharacterLike(0, true)
+
+      clickLogo()
+
+      checkNumberOfFavorites(2)
+    })
   })
 
   describe('Character screen', () => {
@@ -139,7 +165,7 @@ function checkCharacterLike(index: number, isLiked: boolean) {
   cy.get('[data-testid^="character-favorite-button-"]')
     .eq(index)
     .get('[data-testid="heart-icon"]')
-    .should('have.class', isLiked ? 'fill-[#ED1C24]' : 'stroke-white stroke-2')
+    .should('have.class', isLiked ? 'fill-[var(--primary)]' : 'stroke-white stroke-2')
 }
 
 function visitCharacter(index: number) {

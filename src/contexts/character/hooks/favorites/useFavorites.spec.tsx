@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import { useFavorites } from "./useFavorites";
 import { Character } from "../../domain/character";
 
@@ -28,21 +28,29 @@ describe('useFavorites', () => {
     act(() => {
       result.current.toggleFavorite({ id: 1 } as Character);
     });
-    expect(result.current.favorites).toEqual([1]);
+    waitFor(() => {
+      expect(result.current.favorites).toEqual([1]);
+    });
     act(() => {
       result.current.toggleFavorite({ id: 1 } as Character);
     });
-    expect(result.current.favorites).toEqual([]);
+    waitFor(() => {
+      expect(result.current.favorites).toEqual([]);
+    });
   });
 
   it('should return the total of favorites', () => {
     const { result } = renderHook(() => useFavorites());
-    expect(result.current.total).toEqual(0);
+    waitFor(() => {
+      expect(result.current.total).toEqual(0);
+    });
 
     act(() => {
       result.current.toggleFavorite({ id: 1 } as Character);
     });
-    expect(result.current.total).toEqual(1);
+    waitFor(() => {
+      expect(result.current.total).toEqual(1);
+    });
   });
 
   it('should show and hide favorites', () => {
