@@ -4,7 +4,7 @@
 
 Please, check the video below to see the app in action.
 
-<iframe width="640" height="360" src="https://www.loom.com/embed/0f28fef2ae9a4da39d4d955de0708592?sid=41f0a205-6d7f-4c28-8f47-e47b2de308d6" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+[![Demo Video](https://www.loom.com/embed/0f28fef2ae9a4da39d4d955de0708592/thumbnail)](https://www.loom.com/embed/0f28fef2ae9a4da39d4d955de0708592?sid=41f0a205-6d7f-4c28-8f47-e47b2de308d6)
 
 ## Architecture
 
