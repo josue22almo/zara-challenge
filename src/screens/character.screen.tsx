@@ -150,8 +150,11 @@ const AppearancesContent = () => {
 };
 
 function AppearancesTitle() {
+  const { mode } = useCharacterApiContext();
   return (
-    <h2 className="text-2xl px-4 font-bold mb-4 uppercase">Comics</h2>
+    <h2 className="text-2xl px-4 font-bold mb-4 uppercase">
+      {mode === 'marvel' ? 'Comics' : 'Transformations'}
+    </h2>
   )
 }
 
